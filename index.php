@@ -19,7 +19,7 @@
     <section>
         <div class="mt-12">
             <h1 class="mb-4">User List</h1>
-            <a href="add.php" class="text-black text-xl px-4 py-2 border bg-slate-300 rounded-lg hover:bg-slate-400">Add
+            <a href="add.php" class="text-xl px-4 py-2 border bg-[#7494ec] text-white rounded-lg hover:bg-slate-400">Add
                 User</a>
 
             <table class="table table-hover mt-8">
@@ -41,7 +41,7 @@
                         <td>@mdo</td>
                         <td>@mdo</td>
                         <td>
-                            <a href="edit.php" class="text-black px-4 py-1 bg-indigo-300 border rounded-md">Edit</a>
+                            <a href="edit.php" class="text-white px-4 py-1 bg-[#7494ec] border rounded-md">Edit</a>
                             <a href="" class="text-white px-4 py-1  ml-4 bg-red-500 border rounded-md">Delete</a>
                         </td>
                     </tr>
