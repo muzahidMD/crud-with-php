@@ -1,3 +1,10 @@
+<?php
+
+include "config.php";
+$query = mysqli_query($conn, "SELECT * FROM users");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,18 +40,25 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+
                 <tbody>
-                    <tr>
-                        <th>1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>
-                            <a href="edit.php" class="text-white px-4 py-1 bg-[#7494ec] border rounded-md">Edit</a>
-                            <a href="" class="text-white px-4 py-1  ml-4 bg-red-500 border rounded-md">Delete</a>
-                        </td>
-                    </tr>
+                    <?php
+                    $no = 1;
+                    while ($user = mysqli_fetch_assoc($query)) { ?>
+                        <tr>
+                            <th><?= $no++; ?></th>
+                            <td><?= $user['name']; ?></td>
+                            <td><?php echo $user['email']; ?></td>
+                            <td><?= $user['phone']; ?></td>
+                            <td><?= $user['address']; ?></td>
+                            <td>
+                                <a href="edit.php" class="text-white px-4 py-1 bg-[#7494ec] border rounded-md">Edit</a>
+                                <a href="" class="text-white px-4 py-1  ml-4 bg-red-500 border rounded-md">Delete</a>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
