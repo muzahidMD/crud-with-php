@@ -1,3 +1,12 @@
+<?php
+require_once 'config.php';
+$id = $_GET['id'];
+$query = mysqli_query($conn, "SELECT* FROM users WHERE id=$id");
+$user = mysqli_fetch_assoc($query);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,15 +24,16 @@
         <div class="wrapper flex justify-center items-center min-h-screen ">
             <div class="form-wrapper w-[700px]">
                 <h1 class="text-center text-4xl mb-8 ">Edit User</h1>
-                <form method="POST" action="action.php">
-                    <input type="text" name="name" placeholder="Name" required
+
+                <form method="POST" action="action.php?id=<?= $id ?>">
+                    <input type="text" name="name" placeholder="Name" required value="<?= $user['name'] ?>"
                         class="w-full mx-0 my-3 p-3 border border-gray-400 rounded-lg">
-                    <input type="email" name="email" placeholder="Email" required
+                    <input type="email" name="email" placeholder="Email" required value="<?= $user['email'] ?>"
                         class="w-full mx-0 my-3 p-3 border border-gray-400 rounded-lg">
-                    <input type="phone" name="phone" placeholder="Phone" required
+                    <input type="phone" name="phone" placeholder="Phone" required value="<?= $user['phone'] ?>"
                         class="w-full mx-0 my-3 p-3 border border-gray-400 rounded-lg">
-                    <textarea name="address" placeholder="Address" required
-                        class="w-full h-[150px] mx-0 my-3 p-3 border border-gray-400 rounded-lg resize-none"></textarea>
+                    <textarea name="address" placeholder="Address" required class=" w-full h-[150px] mx-0 my-3 p-3 border border-gray-400 rounded-lg
+                        resize-none"> <?= $user['address'] ?> </textarea>
                     <div class="flex justify-between mt-2">
                         <button type="submit" name="update"
                             class="px-12 py-2 bg-[#7494ec] text-white rounded-md cursor-pointer">Update</button>

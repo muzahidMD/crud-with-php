@@ -1,6 +1,6 @@
 <?php
 
-include "config.php";
+require_once "config.php";
 $query = mysqli_query($conn, "SELECT * FROM users");
 
 ?>
@@ -26,7 +26,8 @@ $query = mysqli_query($conn, "SELECT * FROM users");
     <section>
         <div class="mt-12">
             <h1 class="mb-4">User List</h1>
-            <a href="add.php" class="text-xl px-4 py-2 border bg-[#7494ec] text-white rounded-lg hover:bg-slate-400">Add
+            <a href="create.php"
+                class="text-xl px-4 py-2 border bg-[#7494ec] text-white rounded-lg hover:bg-slate-400">Create
                 User</a>
 
             <table class="table table-hover mt-8">
@@ -43,22 +44,22 @@ $query = mysqli_query($conn, "SELECT * FROM users");
 
                 <tbody>
                     <?php
-                    $no = 1;
-                    while ($user = mysqli_fetch_assoc($query)) { ?>
+                    while ($user = mysqli_fetch_assoc($query)): ?>
                         <tr>
-                            <th><?= $no++; ?></th>
-                            <td><?= $user['name']; ?></td>
-                            <td><?php echo $user['email']; ?></td>
-                            <td><?= $user['phone']; ?></td>
-                            <td><?= $user['address']; ?></td>
+                            <td><?= $user['id'] ?></td>
+                            <td><?= $user['name'] ?></td>
+                            <td><?= $user['email'] ?></td>
+                            <td><?= $user['phone'] ?></td>
+                            <td><?= $user['address'] ?></td>
                             <td>
-                                <a href="edit.php" class="text-white px-4 py-1 bg-[#7494ec] border rounded-md">Edit</a>
-                                <a href="" class="text-white px-4 py-1  ml-4 bg-red-500 border rounded-md">Delete</a>
+                                <a href="update.php?id=<?= $user['id'] ?>"
+                                    class="text-white px-4 py-1 bg-[#7494ec] border rounded-md">Edit</a>
+                                <a href="action.php?id=<?= $user['id'] ?>"
+                                    class='text-white px-4 py-1 ml-4 bg-red-500 border rounded-md'
+                                    onclick="return confirm('Are you sure went to delete this user?')">Delete</a>
                             </td>
                         </tr>
-                        <?php
-                    }
-                    ?>
+                    <?php endwhile ?>
                 </tbody>
             </table>
         </div>
